@@ -6,6 +6,9 @@ import { ProjectsComponent } from './projects.component';
 
 @NgModule({
   declarations: [ProjectsComponent],
+  exports: [
+    ProjectsComponent
+  ],
   imports: [
     CommonModule
   ]

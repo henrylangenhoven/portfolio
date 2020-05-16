@@ -6,6 +6,9 @@ import { MastheadComponent } from './masthead.component';
 
 @NgModule({
   declarations: [MastheadComponent],
+  exports: [
+    MastheadComponent
+  ],
   imports: [
     CommonModule
   ]
