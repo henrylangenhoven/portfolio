@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-masthead',
+  selector: 'hl-masthead',
   templateUrl: './masthead.component.html',
   styleUrls: ['./masthead.component.css'],
 })

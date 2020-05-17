@@ -1,7 +1,7 @@
 /*!
- * Start Bootstrap - Grayscale v6.0.0 (https://startbootstrap.com/themes/grayscale)
+ * Start Bootstrap - Freelancer v6.0.1 (https://startbootstrap.com/themes/freelancer)
  * Copyright 2013-2020 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-grayscale/blob/master/LICENSE)
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-freelancer/blob/master/LICENSE)
  */
 (function ($) {
   "use strict"; // Start of use strict
@@ -14,13 +14,23 @@
       if (target.length) {
         $("html, body").animate(
           {
-            scrollTop: target.offset().top - 70,
+            scrollTop: target.offset().top - 71,
           },
           1000,
           "easeInOutExpo"
         );
         return false;
       }
+    }
+  });
+
+  // Scroll to top button appear
+  $(document).scroll(function () {
+    var scrollDistance = $(this).scrollTop();
+    if (scrollDistance > 100) {
+      $(".scroll-to-top").fadeIn();
+    } else {
+      $(".scroll-to-top").fadeOut();
     }
   });
 
@@ -32,7 +42,7 @@
   // Activate scrollspy to add active class to navbar items on scroll
   $("body").scrollspy({
     target: "#mainNav",
-    offset: 100,
+    offset: 80,
   });
 
   // Collapse Navbar
@@ -47,4 +57,18 @@
   navbarCollapse();
   // Collapse the navbar when page is scrolled
   $(window).scroll(navbarCollapse);
+
+  // Floating label headings for the contact form
+  $(function () {
+    $("body")
+      .on("input propertychange", ".floating-label-form-group", function (e) {
+        $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
+      })
+      .on("focus", ".floating-label-form-group", function () {
+        $(this).addClass("floating-label-form-group-with-focus");
+      })
+      .on("blur", ".floating-label-form-group", function () {
+        $(this).removeClass("floating-label-form-group-with-focus");
+      });
+  });
 })(jQuery); // End of use strict
