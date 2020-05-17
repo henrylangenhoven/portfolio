@@ -30,6 +30,17 @@ export class ContactComponent implements OnInit {
         message: this.message,
         phoneNumber: this.phoneNumber,
       })
-      .then((r) => console.log(r)); // TODO show success/error modal
+      .then(
+        (r) => this.success(r),
+        (reason) => this.error(reason)
+      );
+  }
+
+  // TODO show success/error modal
+  success(result) {
+    alert('success:' + result);
+  }
+  error(err) {
+    alert('error:' + err);
   }
 }

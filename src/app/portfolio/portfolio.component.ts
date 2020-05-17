@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Project } from './project.model';
+import { PortfolioModalComponent } from './portfolio-modal/portfolio-modal.component';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'hl-portfolio',
@@ -6,7 +10,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./portfolio.component.css'],
 })
 export class PortfolioComponent implements OnInit {
-  constructor() {}
+  @ViewChild('portfolioModalComponent', { static: false }) portfolioModalComponent: PortfolioModalComponent;
+  projects: Observable<Project[]> = of([]);
 
-  ngOnInit(): void {}
+  private projectsCollection: AngularFirestoreCollection<Project>;
+  constructor(private afs: AngularFirestore) {}
+
+  ngOnInit(): void {
+    this.projectsCollection = this.afs.collection<Project>('projects');
+    this.projects = this.projectsCollection.valueChanges();
+  }
+
+  changeProject(project: Project): void {
+    // TODO show project modal
+    this.portfolioModalComponent.project = project;
+  }
 }
