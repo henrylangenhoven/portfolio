@@ -8,9 +8,8 @@ describe('PortfolioModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PortfolioModalComponent ]
-    })
-    .compileComponents();
+      declarations: [PortfolioModalComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

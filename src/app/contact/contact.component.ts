@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Contact } from './contact.model';
 
 @Component({
   selector: 'hl-contact',
@@ -6,7 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.css'],
 })
 export class ContactComponent implements OnInit {
-  constructor() {}
+  name: string;
+  email: string;
+  message: string;
+  phoneNumber: string;
 
-  ngOnInit(): void {}
+  private contactsCollection: AngularFirestoreCollection<Contact>;
+
+  constructor(private afs: AngularFirestore) {}
+
+  ngOnInit(): void {
+    this.contactsCollection = this.afs.collection<Contact>('contacts');
+  }
+
+  submit() {
+    this.contactsCollection
+      .add({
+        dateCreated: new Date(),
+        name: this.name,
+        email: this.email,
+        message: this.message,
+        phoneNumber: this.phoneNumber,
+      })
+      .then((r) => console.log(r)); // TODO show success/error modal
+  }
 }
